@@ -8,7 +8,7 @@
 
 int main() {
     // Definição das variáveis para armazenar as propriedades das cidades
-    char estadoCarta1, codigoCarta1[4], nomeCidade1[25], estadoCarta2, codigoCarta2[4], nomeCidade2[25];
+    char estadoCarta1, codigoCarta1[4], nomeCidade1[25], estadoCarta2, codigoCarta2[4], nomeCidade2[25], cidadeVencedora[25];
     unsigned int populacao1, populacao2;
     int numeroPontosTuristicos1, numeroPontosTuristicos2;
     float area1, pib1, densidadePopulacional1, pibPerCapita1, pibBilhao1, superPoder1;
@@ -144,10 +144,14 @@ int main() {
         printf("A Cidade 02 tem o maior PIB per capita.\n");
     }
     if (superPoder1>superPoder2) {
+        strcpy(cidadeVencedora, nomeCidade1);
         printf("A Cidade 01 tem o maior Super Poder.\n");
     } else {
+        strcpy(cidadeVencedora, nomeCidade2);
         printf("A Cidade 02 tem o maior Super Poder.\n");
     }
+
+    printf("\nA cidade vencedora é: %s.\n", cidadeVencedora);
 
     printf("------------------------------\n");
 
