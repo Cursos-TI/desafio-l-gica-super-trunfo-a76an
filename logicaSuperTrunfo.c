@@ -10,7 +10,7 @@ int main() {
     // Definição das variáveis para armazenar as propriedades das cidades
     char estadoCarta1, codigoCarta1[4], nomeCidade1[25], estadoCarta2, codigoCarta2[4], nomeCidade2[25], cidadeVencedora[25];
     unsigned int populacao1, populacao2;
-    int numeroPontosTuristicos1, numeroPontosTuristicos2, criterioComparacao, resultado;
+    int numeroPontosTuristicos1, numeroPontosTuristicos2, criterioComparacao1, criterioComparacao2, resultado1, resultado2;
     float area1, pib1, densidadePopulacional1, pibPerCapita1, pibBilhao1, superPoder1;
     float area2, pib2, densidadePopulacional2, pibPerCapita2, pibBilhao2, superPoder2;
 
@@ -112,36 +112,104 @@ int main() {
     superPoder1 = (float) populacao1 + area1 + pib1 + numeroPontosTuristicos1 + (1.0 / densidadePopulacional1);
     superPoder2 = (float) populacao2 + area2 + pib2 + numeroPontosTuristicos2 + (1.0 / densidadePopulacional2);
     
-    // Cria menu interativo para o usuário escolher o critério de comparação
+    // Cria menu interativo para o usuário escolher dois critérios de comparação
     printf("------------------------------\n");
-    
-    printf("**** Opções para comparação ****\n1. População\n2. Área\n3. Pib\n4.Quantidade de pontos turísticos\n"
+
+    printf("**** Escolha dois critérios de comparação para as cartas ****\n");
+      
+    printf("Opções\n1. População\n2. Área\n3. Pib\n4.Quantidade de pontos turísticos\n"
         "5. Densidade populacional\n6. Pib per capita\n");
-    printf("O que deve ser comparado (digite o número de uma opção acima)?\n");
-    scanf("%d", &criterioComparacao);
+
+    printf("Escolha o primeiro critério (digite o número de uma opção acima):\n");
+    scanf("%d", &criterioComparacao1);
+    if ((criterioComparacao1 < 1) || (criterioComparacao1 > 6))
+    {
+        printf("Opção inválida! Escolha um número entre 1 e 6.\n");
+        return 1; // Encerra o programa com erro
+    }
+        
+    printf("Opções restantes\n");
+    switch (criterioComparacao1)
+    {
+    case 1:
+        printf("2. Área\n3. Pib\n4.Quantidade de pontos turísticos\n"
+        "5. Densidade populacional\n6. Pib per capita\n");/* code */
+        break;
+    case 2:
+            printf("1. População\n3. Pib\n4.Quantidade de pontos turísticos\n"
+        "5. Densidade populacional\n6. Pib per capita\n");
+        break;
+    case 3:
+            printf("1. População\n2. Área\n4.Quantidade de pontos turísticos\n"
+        "5. Densidade populacional\n6. Pib per capita\n");
+        break;
+    case 4:
+            printf("1. População\n2. Área\n3. Pib\n"
+        "5. Densidade populacional\n6. Pib per capita\n");
+        break;
+    case 5:
+            printf("1. População\n2. Área\n3. Pib\n4.Quantidade de pontos turísticos\n"
+        "6. Pib per capita\n");
+        break;
+    case 6:
+            printf("1. População\n2. Área\n3. Pib\n4.Quantidade de pontos turísticos\n"
+        "5. Densidade populacional\n");
+        break;
+    }
+    printf("Escolha o segundo critério (digite o número de uma opção acima)?\n");
+    scanf("%d", &criterioComparacao2);
+    if ((criterioComparacao2 < 1) || (criterioComparacao2 > 6) || (criterioComparacao2 == criterioComparacao1))
+    {
+        printf("Opção inválida! Escolha um número entre 1 e 6, diferente do primeiro critério.\n");
+        return 1; // Encerra o programa com erro
+    }
 
     printf("------------------------------\n");
     
     // Compara as cartas conforme o critério escolhido
-    switch (criterioComparacao)
+    switch (criterioComparacao1)
     {
         case 1:
-            resultado = (populacao1>populacao2) ? 1 : 0;
+            resultado1 = (populacao1>populacao2) ? 1 : 0;
             break;
         case 2:
-            resultado = (area1>area2) ? 1 : 0;
+            resultado1 = (area1>area2) ? 1 : 0;
             break;
         case 3:
-            resultado = (pib1>pib2) ? 1 : 0;
+            resultado1 = (pib1>pib2) ? 1 : 0;
             break;
         case 4:
-            resultado = (numeroPontosTuristicos1>numeroPontosTuristicos2) ? 1 : 0;
+            resultado1 = (numeroPontosTuristicos1>numeroPontosTuristicos2) ? 1 : 0;
             break;
         case 5:
-            resultado = (densidadePopulacional1<densidadePopulacional2) ? 1 : 0;
+            resultado1 = (densidadePopulacional1<densidadePopulacional2) ? 1 : 0;
             break;
         case 6:
-            resultado = (pibPerCapita1>pibPerCapita2) ? 1 : 0;
+            resultado1 = (pibPerCapita1>pibPerCapita2) ? 1 : 0;
+            break;
+        default:
+            printf("Opção inválida!\n");
+        }
+
+    switch (criterioComparacao2)
+    {
+        case 1:
+            resultado2 = (populacao1>populacao2) ? 1 : 0;
+            break;
+        case 2:
+            resultado2 = (area1>area2) ? 1 : 0;
+            break;
+        case 3:
+            resultado2 = (pib1>pib2) ? 1 : 0;
+            break;
+        case 4:
+            resultado2 = (numeroPontosTuristicos1>numeroPontosTuristicos2) ? 1 : 0;
+            break;
+        case 5:
+            resultado2 = (densidadePopulacional1<densidadePopulacional2) ? 1 : 0;
+            break;
+        case 6:
+            resultado2 = (pibPerCapita1>pibPerCapita2) ? 1 : 0;
             break;
         default:
             printf("Opção inválida!\n");
@@ -149,10 +217,12 @@ int main() {
 
     // Exibe o resultado da comparação
     printf("**** Resultado do jogo ****\n");
-    printf("Cidades comparadas: \n\t%s X %s.\n", nomeCidade1, nomeCidade2);
+    printf("Comparação entre: \n\t%s e %s.\n", nomeCidade1, nomeCidade2);
 
-    printf("Critério de comparação escolhido: \n\t");
-    switch (criterioComparacao)
+    printf("\n");
+
+    printf("Primeiro critério: \n\t");
+    switch (criterioComparacao1)
     {
     case 1:
         printf("População\n");
@@ -173,9 +243,9 @@ int main() {
         printf("PIB per capita\n");
         break;
     }
-    
-    printf("Valores de cada carta:\n\t");
-    switch (criterioComparacao)
+   
+    printf("Valores de cada cidade:\n\t");
+    switch (criterioComparacao1)
     {
         case 1:
             printf("%s: %u hab X %s: %u hab\n", nomeCidade1, populacao1, nomeCidade2, populacao2);
@@ -197,17 +267,70 @@ int main() {
             break;
     }
 
+    printf("\n");
+
+    printf("Segundo critério: \n\t");
+    switch (criterioComparacao2)
+    {
+    case 1:
+        printf("População\n");
+        break;
+    case 2:
+        printf("Área\n");
+        break;
+    case 3:
+        printf("PIB\n");
+        break;
+    case 4:
+        printf("Número de pontos turísticos\n");
+        break;
+    case 5:
+        printf("Densidade populacional\n");
+        break;
+    case 6:
+        printf("PIB per capita\n");
+        break;
+    }
+
+    printf("Valores de cada cidade:\n\t");
+    switch (criterioComparacao2)
+    {
+        case 1:
+            printf("%s: %u hab X %s: %u hab\n", nomeCidade1, populacao1, nomeCidade2, populacao2);
+            break;
+        case 2:
+            printf("%s: %.2f km² X %s: %.2f km²\n", nomeCidade1, area1, nomeCidade2, area2);
+            break;
+        case 3:
+            printf("%s: R$ %.2f bilhões X %s: R$ %.2f bilhões\n", nomeCidade1, pibBilhao1, nomeCidade2, pibBilhao2);
+            break;
+        case 4:
+            printf("%s: %d pontos turísticos X %s: %d pontos turísticos\n", nomeCidade1, numeroPontosTuristicos1, nomeCidade2, numeroPontosTuristicos2);
+            break;
+        case 5:
+            printf("%s: %.2f hab/km² X %s: %.2f hab/km²\n", nomeCidade1, densidadePopulacional1, nomeCidade2, densidadePopulacional2);
+            break;
+        case 6:
+            printf("%s: R$ %.2f/hab X %s: R$ %.2f/hab\n", nomeCidade1, pibPerCapita1, nomeCidade2, pibPerCapita2);
+            break;
+    }
+
+    printf("\n");
  
     printf("Carta vencedora: \n\t");
-    if (resultado == 1)
+    if (resultado1 == 1 && resultado2 == 1)
     {
         printf("%s\n", nomeCidade1);
     }
-    else if (resultado == 0)
+    else if (resultado1 == 0 && resultado2 == 0) 
     {
         printf("%s\n", nomeCidade2);
+    } else {
+        printf("Houve empate!\n");
     }
 
+    printf("%d\n", resultado1);
+    printf("%d\n", resultado2);
     printf("------------------------------\n");
 
     return 0;
